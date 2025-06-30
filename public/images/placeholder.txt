@@ -1,0 +1,6 @@
+Please add your images here:
+1. hero-saraswati.jpg - The Saraswati image
+2. swami-samarth.jpg - The Swami Samarth image
+3. Any instrument images you want to use
+
+The website will use these images with glassmorphism effects and blending.

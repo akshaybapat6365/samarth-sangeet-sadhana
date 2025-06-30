@@ -5,6 +5,11 @@ import { LanguageProvider } from './context/LanguageContext';
 export const metadata: Metadata = {
   title: 'Samarth Sangeet Sadhana - Learn Indian Classical Music',
   description: 'Discover the joy of Indian melody and rhythm with Shri Raghunath Bapat. Classes for singing, harmonium, tabla, and keyboard.',
+  icons: {
+    icon: '/images/swami-samarth.jpg',
+    shortcut: '/images/swami-samarth.jpg',
+    apple: '/images/swami-samarth.jpg',
+  },
 };
 
 export default function RootLayout({
@@ -14,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/images/swami-samarth.jpg" />
+      </head>
       <body>
         <LanguageProvider>
           {children}
