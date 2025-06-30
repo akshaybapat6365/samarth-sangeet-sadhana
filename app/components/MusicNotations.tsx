@@ -6,8 +6,16 @@ export const WesternNote = ({ className = '' }: { className?: string }) => (
   </svg>
 );
 
-export const IndianSwarNotation = ({ swar = 'स', className = '' }: { swar?: string; className?: string }) => (
-  <div className={`font-devanagari text-2xl font-bold ${className}`}>
+export const IndianSwarNotation = ({ 
+  swar = 'स', 
+  className = '',
+  style 
+}: { 
+  swar?: string; 
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
+  <div className={`font-devanagari text-2xl font-bold ${className}`} style={style}>
     {swar}
   </div>
 );
