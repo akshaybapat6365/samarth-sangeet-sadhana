@@ -3,6 +3,9 @@
 import { useLanguage } from './context/LanguageContext';
 import LanguageToggle from './components/LanguageToggle';
 import GlassCard from './components/GlassCard';
+import InstrumentShowcase from './components/InstrumentShowcase';
+import ParallaxSection from './components/ParallaxSection';
+import ImageGallery from './components/ImageGallery';
 import { FloatingNotes, MusicWave, WesternNote, IndianSwarNotation } from './components/MusicNotations';
 import { content } from './content';
 import Image from 'next/image';
@@ -11,43 +14,41 @@ export default function Home() {
   const { language } = useLanguage();
   const t = content[language];
 
+  const galleryImages = [
+    { src: '/images/saraswati-veena.png', alt: 'Saraswati with Veena', title: language === 'en' ? 'Divine Music' : 'दैवी संगीत' },
+    { src: '/images/saraswati-lotus.png', alt: 'Saraswati on Lotus', title: language === 'en' ? 'Sacred Art' : 'पवित्र कला' },
+    { src: '/images/instrument-circle.png', alt: 'Musical Instruments', title: language === 'en' ? 'Our Instruments' : 'आमची वाद्ये' },
+  ];
+
   return (
     <main className="min-h-screen relative">
       <LanguageToggle />
       
-      {/* Background with hero image */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-warm-100/90 via-warm-50/80 to-accent-50/90"></div>
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'url("/images/hero-saraswati.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'blur(3px)',
-          }}
-        ></div>
-        <FloatingNotes />
-      </div>
-      
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section with Parallax */}
+      <ParallaxSection 
+        imageSrc="/images/hero-saraswati.jpg" 
+        className="min-h-screen flex items-center justify-center"
+        overlayOpacity={0.6}
+      >
         <div className="relative z-10 text-center section-padding py-20 max-w-5xl mx-auto fade-in">
-          {/* Swami Samarth Icon */}
+          {/* Swami Samarth Icon with Glow */}
           <div className="mb-8 flex justify-center">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-warm-400/50 shadow-2xl">
-              <Image
-                src="/images/swami-samarth.jpg"
-                alt="Swami Samarth"
-                width={128}
-                height={128}
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-warm-600/30 to-transparent"></div>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-warm-400 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+              <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-warm-400/50 shadow-2xl">
+                <Image
+                  src="/images/swami-samarth.jpg"
+                  alt="Swami Samarth"
+                  width={128}
+                  height={128}
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-warm-600/30 to-transparent"></div>
+              </div>
             </div>
           </div>
           
-          <GlassCard className="p-8 md:p-12">
+          <GlassCard className="p-8 md:p-12" blur="xl">
             <h1 className={`text-5xl md:text-7xl font-display font-bold mb-4 gradient-text text-hover-wave ${language === 'mr' ? 'font-devanagari' : ''}`}>
               {t.hero.title}
             </h1>
@@ -66,18 +67,19 @@ export default function Home() {
             </a>
           </GlassCard>
         </div>
-        
-        {/* Floating Instruments */}
-        <div className="absolute top-20 left-10 w-24 h-24 opacity-20 instrument-float">
-          <div className="w-full h-full bg-warm-400 rounded-full blur-xl"></div>
-        </div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 opacity-20 instrument-float" style={{ animationDelay: '2s' }}>
-          <div className="w-full h-full bg-accent-400 rounded-full blur-xl"></div>
-        </div>
-      </section>
+        <FloatingNotes />
+      </ParallaxSection>
 
-      {/* Guru Section */}
-      <section id="about" className="relative py-20">
+      {/* Guru Section with Saraswati Background */}
+      <section id="about" className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <Image
+            src="/images/saraswati-veena.png"
+            alt="Background"
+            fill
+            className="object-cover"
+          />
+        </div>
         <div className="max-w-6xl mx-auto section-padding relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <GlassCard className="p-8 hover-lift">
@@ -103,8 +105,16 @@ export default function Home() {
             </GlassCard>
             
             <div className="relative">
-              <GlassCard className="aspect-square p-4" blur="lg">
-                <div className="w-full h-full bg-gradient-to-br from-warm-300/50 to-warm-400/50 rounded-xl"></div>
+              <GlassCard className="p-4" blur="sm">
+                <div className="relative aspect-square rounded-xl overflow-hidden">
+                  <Image
+                    src="/images/saraswati-lotus.png"
+                    alt="Saraswati"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-warm-900/30 to-transparent"></div>
+                </div>
               </GlassCard>
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-24 h-24">
@@ -118,19 +128,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Classes Section */}
-      <section id="classes" className="relative py-20">
+      {/* Classes Section with Instrument Showcase */}
+      <section id="classes" className="relative py-20 bg-gradient-to-b from-warm-50 to-accent-50">
         <div className="max-w-6xl mx-auto section-padding relative z-10">
           <div className="text-center mb-16">
             <h2 className={`text-4xl font-display font-bold mb-6 gradient-text ${language === 'mr' ? 'font-devanagari' : ''}`}>
               {t.classes.title}
             </h2>
-            <p className={`text-lg text-gray-600 max-w-3xl mx-auto ${language === 'mr' ? 'font-devanagari' : ''}`}>
+            <p className={`text-lg text-gray-600 max-w-3xl mx-auto mb-12 ${language === 'mr' ? 'font-devanagari' : ''}`}>
               {t.classes.subtitle}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Instrument Showcase */}
+          <InstrumentShowcase />
+
+          <div className="grid md:grid-cols-2 gap-12 mt-16">
             <GlassCard className="p-8 hover-lift glow-border">
               <h3 className={`text-2xl font-semibold gradient-text mb-2 ${language === 'mr' ? 'font-devanagari' : ''}`}>
                 {t.classes.offerings.title}
@@ -179,8 +192,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <ParallaxSection 
+        imageSrc="/images/instrument-circle.png" 
+        className="py-20"
+        overlayOpacity={0.9}
+      >
+        <div className="max-w-6xl mx-auto section-padding">
+          <h2 className={`text-4xl font-display font-bold text-center mb-12 text-white ${language === 'mr' ? 'font-devanagari' : ''}`}>
+            {language === 'en' ? 'Divine Inspiration' : 'दैवी प्रेरणा'}
+          </h2>
+          <ImageGallery images={galleryImages} />
+        </div>
+      </ParallaxSection>
+
       {/* Certification Section */}
-      <section id="certification" className="relative py-20">
+      <section id="certification" className="relative py-20 bg-white">
         <div className="max-w-4xl mx-auto section-padding text-center relative z-10">
           <GlassCard className="p-12">
             <h2 className={`text-4xl font-display font-bold mb-6 gradient-text ${language === 'mr' ? 'font-devanagari' : ''}`}>
@@ -202,8 +229,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Events Section */}
-      <section id="events" className="relative py-20">
+      {/* Events Section with Animated Background */}
+      <section id="events" className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-warm-100 to-accent-50"></div>
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-10 left-10 w-64 h-64 bg-warm-300 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent-300 rounded-full opacity-20 blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          </div>
+        </div>
         <div className="max-w-4xl mx-auto section-padding text-center relative z-10">
           <h2 className={`text-4xl font-display font-bold mb-4 text-glow ${language === 'mr' ? 'font-devanagari' : ''}`}>
             {t.events.title}
@@ -233,9 +267,17 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-20">
+      <section id="contact" className="relative py-20 bg-gray-900">
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="/images/swami-samarth.jpg"
+            alt="Background"
+            fill
+            className="object-cover"
+          />
+        </div>
         <div className="max-w-4xl mx-auto section-padding text-center relative z-10">
-          <GlassCard className="p-12 bg-gray-900/20" blur="lg">
+          <GlassCard className="p-12 bg-gray-900/40" blur="lg">
             <h2 className={`text-4xl font-display font-bold mb-4 text-white ${language === 'mr' ? 'font-devanagari' : ''}`}>
               {t.contact.title}
             </h2>

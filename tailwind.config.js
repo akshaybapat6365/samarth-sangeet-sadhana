@@ -38,6 +38,9 @@ module.exports = {
         'body': ['Inter', 'sans-serif'],
         'devanagari': ['Noto Sans Devanagari', 'sans-serif'],
       },
+      animation: {
+        'spin-slow': 'spin 60s linear infinite',
+      },
     },
   },
   plugins: [],
