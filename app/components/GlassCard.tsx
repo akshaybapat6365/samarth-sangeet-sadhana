@@ -7,13 +7,15 @@ interface GlassCardProps {
   className?: string;
   blur?: 'sm' | 'md' | 'lg' | 'xl';
   opacity?: number;
+  onClick?: () => void;
 }
 
 export default function GlassCard({ 
   children, 
   className = '', 
   blur = 'md',
-  opacity = 20 
+  opacity = 20,
+  onClick 
 }: GlassCardProps) {
   const blurClasses = {
     sm: 'backdrop-blur-sm',
@@ -35,6 +37,7 @@ export default function GlassCard({
       style={{
         background: `linear-gradient(135deg, rgba(255,255,255,${opacity/100}) 0%, rgba(255,255,255,${opacity/200}) 100%)`,
       }}
+      onClick={onClick}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-50"></div>
       <div className="relative z-10">
