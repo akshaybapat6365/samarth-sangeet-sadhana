@@ -34,10 +34,10 @@ module.exports = {
         }
       },
       fontFamily: {
-        'display': ['Playfair Display', 'serif'],
-        'body': ['Inter', 'sans-serif'],
+        'bebas': ['Bebas Neue', 'sans-serif'],
+        'playfair': ['Playfair Display', 'serif'],
+        'inter': ['Inter', 'sans-serif'],
         'devanagari': ['Noto Sans Devanagari', 'sans-serif'],
-        'serif': ['Crimson Text', 'serif'],
       },
       animation: {
         'spin-slow': 'spin 60s linear infinite',
