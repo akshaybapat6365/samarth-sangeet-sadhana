@@ -39,12 +39,15 @@ export default function ParallaxSection({
           src={imageSrc}
           alt="Background"
           fill
-          className="object-cover"
+          className="object-cover object-top"
           quality={100}
+          priority
         />
         <div 
-          className="absolute inset-0 bg-gradient-to-b from-warm-900/80 to-transparent"
-          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0"
+          style={{ 
+            background: `linear-gradient(to bottom, rgba(0,0,0,${overlayOpacity * 0.8}), rgba(0,0,0,${overlayOpacity * 0.3}))` 
+          }}
         ></div>
       </div>
       <div className="relative z-10">

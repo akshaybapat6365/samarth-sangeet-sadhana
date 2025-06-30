@@ -29,13 +29,13 @@ export default function GlassCard({
       className={`
         relative overflow-hidden rounded-2xl
         ${blurClasses[blur]}
-        bg-white/10 dark:bg-gray-900/10
-        border border-white/20 dark:border-gray-700/20
-        shadow-xl shadow-warm-500/10
+        border border-white/30 dark:border-gray-700/30
+        shadow-2xl shadow-black/10
         ${className}
       `}
       style={{
-        background: `linear-gradient(135deg, rgba(255,255,255,${opacity/100}) 0%, rgba(255,255,255,${opacity/200}) 100%)`,
+        backgroundColor: `rgba(255, 255, 255, ${opacity/100})`,
+        backdropFilter: blur === 'sm' ? 'blur(8px)' : blur === 'md' ? 'blur(12px)' : blur === 'lg' ? 'blur(16px)' : 'blur(24px)',
       }}
       onClick={onClick}
     >

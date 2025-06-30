@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,7 +38,7 @@
   }
   
   .glass-morphism {
-    @apply backdrop-blur-md bg-white/10 border border-white/20 shadow-xl;
+    @apply backdrop-blur-sm bg-white/15 border border-white/30 shadow-2xl;
   }
   
   .text-glow {
@@ -57,7 +57,8 @@
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-warm-600 to-accent-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-warm-700 to-accent-700 bg-clip-text text-transparent font-bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .musical-note {
@@ -113,6 +114,43 @@
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(-3deg); }
     75% { transform: rotate(3deg); }
+  }
+  
+  /* Enhanced Typography */
+  .drop-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .drop-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .text-outline {
+    text-shadow: 
+      -1px -1px 0 rgba(255, 255, 255, 0.8),
+      1px -1px 0 rgba(255, 255, 255, 0.8),
+      -1px 1px 0 rgba(255, 255, 255, 0.8),
+      1px 1px 0 rgba(255, 255, 255, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Better heading styles */
+  h1, h2, h3 {
+    @apply tracking-tight;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Enhanced font weights for better contrast */
+  .font-display {
+    font-variation-settings: 'wght' 800;
+  }
+  
+  /* Improved glassmorphism for sections */
+  .glass-section {
+    @apply backdrop-blur-sm bg-white/10 border border-white/20;
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
   }
   
   .parallax-slow {

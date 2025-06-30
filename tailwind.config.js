@@ -37,6 +37,7 @@ module.exports = {
         'display': ['Playfair Display', 'serif'],
         'body': ['Inter', 'sans-serif'],
         'devanagari': ['Noto Sans Devanagari', 'sans-serif'],
+        'serif': ['Crimson Text', 'serif'],
       },
       animation: {
         'spin-slow': 'spin 60s linear infinite',
