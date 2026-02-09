@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { siteConfig } from '@/app/config/site';
 import { content } from '@/app/content';
 import { useLanguage } from '@/app/context/LanguageContext';
 import { Card, GildedCard } from '@/app/components/ui/Card';
@@ -140,8 +141,31 @@ export default function AboutPage() {
             </Reveal>
           ))}
         </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          <Reveal>
+            <Card className="p-7">
+              <p className="eyebrow">{language === 'mr' ? 'वेबसाइट' : 'Website'}</p>
+              <h3 className="title mt-3 text-lg">
+                {language === 'mr' ? 'Vercel लिंक' : 'Vercel URL'}
+              </h3>
+              <a
+                href={siteConfig.siteUrl}
+                className="mt-3 inline-block text-sm text-ink underline decoration-gold/40 underline-offset-4 hover:decoration-gold"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {siteConfig.siteUrl}
+              </a>
+              <p className="mt-3 text-sm text-muted">
+                {language === 'mr'
+                  ? 'ही साइट Vercel वर होस्ट केलेली आहे.'
+                  : 'This site is hosted on Vercel.'}
+              </p>
+            </Card>
+          </Reveal>
+        </div>
       </Section>
     </div>
   );
 }
-
